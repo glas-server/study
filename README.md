@@ -1,9 +1,12 @@
 # Table of Content
-## Code quality
+## Coding & quality
+- Coding convention
+- Clean code
 - Unit test
 - Review code
 - SOLID
 - Sonar
+- Java 8, 9, 10, 11, 12
 
 ## Technologies
 - Spring
