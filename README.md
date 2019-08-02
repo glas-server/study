@@ -9,6 +9,7 @@
 - Java 8, 9, 10, 11, 12
 
 ## Technologies
+- [HTTP/SSL](01_https_ssl)
 - Spring
 - Redis
 - Elasticsearch
