@@ -10,6 +10,7 @@
 
 ## Technologies
 - [HTTP/SSL](01_https_ssl)
+- [Push Notification](02_push_notification)
 - Spring
 - Redis
 - Elasticsearch
