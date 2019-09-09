@@ -13,7 +13,7 @@
 - [Push Notification](02_push_notification)
 - Spring
 - Redis
-- Elasticsearch
+- [Elasticsearch](04_elasticsearch)
 - RabbitMQ
 - AWS
 - Firebase
