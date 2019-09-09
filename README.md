@@ -12,7 +12,7 @@
 - [HTTP/SSL](01_https_ssl)
 - Spring
 - Redis
-- Elasticsearch
+- [Elasticsearch](04_Elasticsearch)
 - RabbitMQ
 - AWS
 - Firebase
