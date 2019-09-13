@@ -55,7 +55,40 @@ The most widely deployed open source message-oriented middleware that implements
 - Commercial Support
 - Large Community
 
-### Exchange, Routing, Binding
+### Exchange, Bindings
+
+## Exchange: 
+The core idea int the messaging model in RabbitMQ is that the producer never sends any messages directly to a queue.Actually, quite often the producer doen't even know if a message will be delivered to any queue at all. Instead, the producer can only send messages to an exchange.
+An exchange is a very simple thing. On one side, it receives messages from producer and the other side it pushes them to queues. Messages may send to particular queue, or many queues, or discarded. The rules for that are defined by the exchange type.
+
+## Bindings: 
+Is a relationship between an exchange and a queue. Exchange and queue are bound  each other by routing key.
+<img src="https://www.rabbitmq.com/img/tutorials/bindings.png" width="500px">
+
+#Note: There can be as many words in the routing key as you like, up to the limit of 255 bytes.
 
 
+### Exchange type (DIRECT, TOPIC, FANOUT and HEADERS)
+## Direct:
+A message goes to the queues whose routing key (between an exchange and a queue) exactly matches the rounting key of message.
+<img src="https://www.rabbitmq.com/img/tutorials/direct-exchange.png" width="500px">
 
+## Fanout: 
+Broadcasts all the messages it receives to all queues it knows
+<img src="https://www.rabbitmq.com/img/tutorials/exchanges.png" width="500px">
+
+## Topic:
+A message sent with a particular routing key will be delivered to all the queues that are bound with a matching routing key (between an exchange and a queue).
+
+Messages sent to a topic exchange can't have an arbitrary routing_key - it must be a list of words, delimited by dots. A few valid routing key examples: "stock.usd.nyse", "nyse.vmw", "quick.orange.rabbit". 
+
+<img src="https://www.rabbitmq.com/img/tutorials/python-five.png" width="500px">
+
+## Headers:
+A headers exchange is an exchange which route messages to queues based on message header value instead of rouring key. Producer adds some values in a form of key value pair in message header and sends it to headers exchange.
+
+After receiving a message, exchange try to match all or any (based on the value of “x-match”) header value with the binding value of all the queues bound to it. If match is found, it route the message to the queue whose binding value is matched and if match is not found, it ignored the message
+
+Producer can add one special value in the header of the message called as “x-match“, The “x-match” can have two different values, “any” or “all“, where “all” is the default value. “all” means all the header key-value pairs must match while “any” means at least one of the headers key-value pairs must match with the binding value of the queue. The value in header key-value pairs can be of any data type like integer, string or even hash.
+
+<img src="https://codedestine.com/wp-content/uploads/2016/09/HeadersExchange.png" width="500px">
