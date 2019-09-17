@@ -14,7 +14,7 @@
 - Spring
 - Redis
 - [Elasticsearch](04_elasticsearch)
-- RabbitMQ
+- [RabbitMQ](05_rabbitmq)
 - AWS
 - Firebase
 
