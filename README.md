@@ -15,7 +15,7 @@
 - Redis
 - [Elasticsearch](04_elasticsearch)
 - [RabbitMQ](05_rabbitmq)
-- AWS
+- [AWS](06_aws)
 - Firebase
 
 ## Architecture & Design
