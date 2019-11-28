@@ -6,7 +6,7 @@
 - Review code
 - SOLID
 - Sonar
-- Java 8, 9, 10, 11, 12
+- Java 8, 9, 10, 11, 12, 13
 
 ## Technologies
 - [HTTP/SSL](01_https_ssl)
@@ -30,7 +30,7 @@
 - ELK Stack
 - Grafana
 - Zabbiz
-- Sentry
+- [Sentry](08_sentry)
 
 ## Build & deploy
 - Jenkin
