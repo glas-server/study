@@ -16,6 +16,7 @@ public class Controller {
     @GetMapping("/success")
     public String successRequest(
     ) {
+        log.debug("successRequest");
         return "OK";
     }
 
@@ -23,6 +24,7 @@ public class Controller {
     public String failRequest(
             @RequestParam("message") String message
     ) {
+        log.debug("failRequest");
         Sentry.getContext().setUser(new UserBuilder().setId("user id 1").build());
         Sentry.getContext().addTag("api", "fail");
         Sentry.getContext().addExtra("request data", message);
@@ -33,12 +35,14 @@ public class Controller {
     public String tryCatchRequest(
             @RequestParam("message") String message
     ) {
+        log.debug("tryCatchRequest");
         Sentry.getContext().setUser(new UserBuilder().setId("user id 1").build());
         Sentry.getContext().addTag("api", "fail");
         Sentry.getContext().addExtra("request data", message);
         try {
             throw new NullPointerException();
         } catch(Exception ex) {
+            log.error("", ex);
             return "Not OK";
         }
     }
@@ -53,6 +57,7 @@ public class Controller {
         try {
             throw new NullPointerException();
         } catch(Exception ex) {
+            log.error("", ex);
             Sentry.capture(ex);
             return "Not OK";
         }
