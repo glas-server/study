@@ -19,7 +19,6 @@ public class SentryConfiguration {
     @PostConstruct
     public void init() {
         Sentry.init("<DSN_URL>?environment=staging");
-
     }
 
     @Bean

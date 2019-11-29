@@ -1,4 +1,5 @@
 ![Sentr](https://camo.githubusercontent.com/2dfeafbee0904d6df16ddf7200993dace1629e60/68747470733a2f2f73656e7472792d6272616e642e73746f726167652e676f6f676c65617069732e636f6d2f73656e7472792d6c6f676f2d626c61636b2e706e67)
+
 Stop hoping your users will report errors
 
 ## What's Sentry?
@@ -33,6 +34,11 @@ Stop hoping your users will report errors
     <artifactId>sentry-spring</artifactId>
     <version>1.7.27</version>
 </dependency>
+<dependency>
+    <groupId>io.sentry</groupId>
+    <artifactId>sentry-logback</artifactId>
+    <version>1.7.27</version>
+</dependency>
 ```
 
 - Create file `sentry.properties` in resource folder, you can configure many things, for example:
@@ -46,6 +52,26 @@ stacktrace.app.packages=com.github.halab4dev
 async.queuesize=100
 timeout=1000
 ``` 
+- Create file `logback-spring.xml` in resource folder, so sentry will automatically capture error when `logger.error()` called.
+```xml
+<configuration>
+    <!--    Include spring boot default config-->
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+    <!--    Configure the Sentry appender, overriding the logging threshold to the WARN level -->
+    <appender name="Sentry" class="io.sentry.logback.SentryAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+    </appender>
+
+    <!--    Enable the Console and Sentry appenders, Console is provided as an example
+        of a non-Sentry logger that is set to a different logging threshold -->
+    <root level="INFO">
+        <appender-ref ref="Sentry" />
+    </root>
+</configuration>
+```
 - Create `SentryConfiguration` class with:
     - Initialize sentry
 ```java
@@ -69,7 +95,7 @@ public ServletContextInitializer sentryServletContextInitializer() {
     return new io.sentry.spring.SentryServletContextInitializer();
 }
 ```
-- Add `Sentry.capture(ex);` anywhere that you catch an exception:
+- You can send error data to sentry manualy by `Sentry.capture(ex);`:
 ```java
     try {
         ...
@@ -77,7 +103,7 @@ public ServletContextInitializer sentryServletContextInitializer() {
         Sentry.capture(ex);
     }
 ```
-- You can add custom data to get more information
+- You can add custom data to get more information, should add as soon as possible
 ```java
         Sentry.getContext().setUser(new UserBuilder().setId("user_id").build());
         Sentry.getContext().addTag("api", "api_name");
