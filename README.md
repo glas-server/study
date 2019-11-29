@@ -1,3 +1,6 @@
+![GitHub contributors](https://img.shields.io/github/contributors/hoi-lay-loi/hoc-lam-banh)
+![GitHub last commit](https://img.shields.io/github/last-commit/hoi-lay-loi/hoc-lam-banh)
+
 # Table of Content
 ## Coding & quality
 - Coding convention
