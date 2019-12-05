@@ -30,7 +30,7 @@
 ## Monitoring
 - JVM
 - Performance
-- ELK Stack
+- [EFK stack](0.75_efk)
 - Grafana
 - Zabbiz
 - [Sentry](08_sentry)
